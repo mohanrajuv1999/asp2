@@ -52,116 +52,179 @@
             </Fluent:Ribbon.Menu>
 
             <!--Tabs-->
-            <Fluent:RibbonTabItem Header="Create Scenario" ActiveTabBackground="#FFDBE0FF">
-                <Fluent:RibbonGroupBox Header="Add new car">
-                    <Fluent:DropDownButton Header="Street" AllowDrop="True" Icon="Images/roadIcon.png" Width="90">
-                        <Fluent:DropDownButton.Background>
-                            <ImageBrush ImageSource="Images/roadIcon.png" Stretch="UniformToFill" Opacity="0.2"/>
-                        </Fluent:DropDownButton.Background>
-                        <ListBoxItem/>
-                    </Fluent:DropDownButton>
+            <Fluent:RibbonTabItem Header="Settings" ActiveTabBackground="#FFDBE0FF">
+                <Fluent:RibbonGroupBox Header="Create Scenario">
                     <Fluent:DropDownButton Header="CarType" AllowDrop="True" Width="90">
                         <Fluent:DropDownButton.Background>
                             <ImageBrush ImageSource="Images/car.png" Stretch="UniformToFill" Opacity="0.2"/>
                         </Fluent:DropDownButton.Background>
-                        <ListBoxItem/>
+                        <ListBox Name="AvailableCarTypes"/>
                     </Fluent:DropDownButton>
                     <Fluent:DropDownButton Header="Path" AllowDrop="True" Icon="Resources/car.png" Width="90">
                         <Fluent:DropDownButton.Background>
                             <ImageBrush ImageSource="Images/fireworks.png" Stretch="UniformToFill" Opacity="0.2"/>
                         </Fluent:DropDownButton.Background>
-                        <ListBoxItem/>
+                        <ListBox Name="AvailablePathsListBox"/>
                     </Fluent:DropDownButton>
-                    <Button Content="Add" Margin="10,20,10,10"></Button>
+                    <Label Content="Is the car Bad?"></Label>
+                    <CheckBox Name="isBadCheckBox" Width="30" Height="30"></CheckBox>
+                    <Label Content="Car Speed"></Label>
+                    <TextBox Name="speedTextBox" Text="" Width="auto" ></TextBox>
+                    <Button Content="Add" Click="AddCar" Margin="20"/>
                 </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-
-            <Fluent:RibbonTabItem Header="Semaphore Settings">
-                <Fluent:RibbonGroupBox Header="OtherGroup">
-                    <Button Margin="15" Opacity="0.8" Content="Just a button"/>
+                <Fluent:RibbonGroupBox Header="TrafficLights Settings">
+                    <Button Margin="15" Content="Start Traffic Lights Sync" Click="StartTrafficLightsSync"/>
                 </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="Other Settings">
-                <Fluent:RibbonGroupBox Header="The group">
+                <Fluent:RibbonGroupBox Header="Sensors">
+                    <StackPanel>
+                        <Button Margin="15,2,15,5" Content="Start Traffic Monitoring" Click="StartSensorMonitor"/>
+                        <Button Margin="15,2" Content="Stop Traffic Monitoring" Click="StopSensorMonitor"/>
+                    </StackPanel>
+                </Fluent:RibbonGroupBox>
 
+                <Fluent:RibbonGroupBox Header="Green Wave">
+                    <StackPanel>
+                        <Button Margin="15,2,15,5" Content="Activate" Click="ActivateGreenWave"/>
+                        <Button Margin="15,2,15,5" Content="Deactivate" Click="DeactivateGreenWave"/>
+                    </StackPanel>
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
         <Grid Grid.Row="1" Name="mapGrid">
             <Image x:Name="map" Margin="0" Source="Resources/mapp2.png" Stretch="Fill"/>
             <Button Content="Start Simulation" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Row="1" Margin="15" Opacity="0.9" Click="startAnimation"/>
-            <Button Content="Pause" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Grid.Row="1" Margin="160,15,15,15" Opacity="0.9" Click="pauseAnimation" />
-            <Button Content="Stop Simulation" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Margin="240,15,15,15" Opacity="0.9" Click="stopAnimation" />
-            <Button Content="Clear" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Margin="380,15,15,15" Opacity="0.9" />
+            
+            <Button Content="Clear" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="160,15,15,15" Opacity="0.9" Click="clearScenario" />
         </Grid>
 
         <Grid Grid.Row="2">
-
-            <!--<GroupBox Grid.Column="0" Grid.Row="0" Header="LiveStats" Margin="5,5,5,0">
-                <StackPanel>
-                    <Label>asdf</Label>
-                    <Label>asdf</Label>
-                    <Label>asdf</Label>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Grid.Column="1" Grid.Row="0" Header="LiveStats" Margin="5,5,5,0">
-                <StackPanel>
-                    <Label>asdf</Label>
-                    <Label>asdf</Label>
-                </StackPanel>
-            </GroupBox>-->
-            <!--<TabControl Margin="5">
-                <TabControl.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="#FF878787" Offset="1"/>
-                    </LinearGradientBrush>
-                </TabControl.Background>
-                <TabItem Header="LiveStatistics">
-                    <StackPanel>
-                        <Label>asdf</Label>
-                        <Label>asdf</Label>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="LiveStatistics2">
-                    <StackPanel>
-                        <Label>asdf</Label>
-                        <Label>asdf</Label>
-                        <Label>asdf</Label>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="RedPasses">
-                    <ScrollViewer>
-                        <StackPanel>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                            <Label>asdf</Label>
-                        </StackPanel>
-                    </ScrollViewer>
-                </TabItem>
-            </TabControl>-->
             <dragablz:TabablzControl>
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController />
                 </dragablz:TabablzControl.InterTabController>
-                <TabItem Header="HELLO">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello World</TextBlock>
+                <TabItem Header="Scenario">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="5">
+                            <ScrollViewer Height="120" Width="auto" CanContentScroll="True">
+                                <ListView Name="selectedItemsListView">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Car Type" DisplayMemberBinding="{Binding carType}"></GridViewColumn>
+                                            <GridViewColumn Header="Selected Path" DisplayMemberBinding="{Binding path}"></GridViewColumn>
+                                            <GridViewColumn Header="Is this car Bad?" DisplayMemberBinding="{Binding isBad}"></GridViewColumn>
+                                            <GridViewColumn Header="Speed" DisplayMemberBinding="{Binding speed}"></GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </ScrollViewer>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <ScrollViewer Height="120" Width="auto" CanContentScroll="True">
+                                <ListBox>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor1" Grid.Column="0"></Label>
+                                            <Label Name="label1" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar1" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor2" Grid.Column="0"></Label>
+                                            <Label Name="label2" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar2" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor3" Grid.Column="0"></Label>
+                                            <Label Name="label3" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar3" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor4" Grid.Column="0"></Label>
+                                            <Label Name="label4" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar4" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor5" Grid.Column="0"></Label>
+                                            <Label Name="label5" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar5" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                    <ListBoxItem>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="Sensor6" Grid.Column="0"></Label>
+                                            <Label Name="label6" Grid.Column="1"></Label>
+                                            <ProgressBar Minimum="0" Maximum="5" Name="ProgressBar6" Height="20" Width="303" Grid.Column="2"></ProgressBar>
+                                        </Grid>
+                                    </ListBoxItem>
+                                </ListBox>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="MATERIAL">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Material Design</TextBlock>
-                </TabItem>
-                <TabItem Header="DESIGN">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Looks Quite Nice</TextBlock>
+                <TabItem Header="Statistics">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Height="120" Width="auto" Grid.Column="0">
+                            <ListView Name="listBoxOfBadCars">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding _name}"></GridViewColumn>
+                                        <GridViewColumn Header="Speed" DisplayMemberBinding="{Binding _speed}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                        <StackPanel Grid.Column="1">
+                            
+                        </StackPanel>
+                    </Grid>
                 </TabItem>
             </dragablz:TabablzControl>
         </Grid>
-
     </Grid>
 </Window>
+
